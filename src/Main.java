@@ -9,7 +9,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         GerenciadorVoos gv = new GerenciadorVoos();
-        GerenciadorReservas gr = new GerenciadorReservas();
+        GerenciadorReservas gr = new GerenciadorReservas(gv);
 
         int option = menu();
 
@@ -51,7 +51,16 @@ public class Main {
                     gr.Reservas();
                     option = menu();
                     break;
-                case 7:
+                case 5:
+                    System.out.println("Qual o CPF do passageiro que deseja cancelar a reserva:");
+                    String CPF_cancelar = sc.nextLine();
+                    System.out.println("Informe o codigo do voo:");
+                    int codigo_cancelar = sc.nextInt();
+
+                    gr.CancelarReserva(codigo_cancelar, CPF_cancelar);
+                    option = menu();
+                    break;
+                case 6:
             }
 
         } while (option != 0);
@@ -69,7 +78,8 @@ public class Main {
         System.out.println("2 - Listar todos os voos disponíveis");
         System.out.println("3 - Reservar assento");
         System.out.println("4 - Listar todos os reservas disponíveis");
-        System.out.println("7 - Buscar voo por cidade");
+        System.out.println("5 - Cancelar reserva");
+        System.out.println("6 - Buscar voo por cidade");
         System.out.println("----------------");
 
         return sc.nextInt();

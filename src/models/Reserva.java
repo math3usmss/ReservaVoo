@@ -32,11 +32,11 @@ public class Reserva {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Reserva reserva)) return false;
-        return Objects.equals(CPF, reserva.CPF) && Objects.equals(codigoVoo, reserva.codigoVoo);
+        return Objects.equals(nomePassageiro, reserva.nomePassageiro) && Objects.equals(CPF, reserva.CPF) && Objects.equals(codigoVoo, reserva.codigoVoo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(CPF, codigoVoo);
+        return Objects.hash(nomePassageiro, CPF, codigoVoo);
     }
 }

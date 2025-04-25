@@ -46,6 +46,21 @@ public class GerenciadorVoos {
         return voos.stream().anyMatch(v -> v.getCodigo() == codigoVoo);
     }
 
+    public void reservarAssento(int codigoVoo){
+        for(Voo v_reserva : voos){
+            if(v_reserva.getCodigo().equals(codigoVoo)){
+                v_reserva.reservarAssentos();
+            }
+        }
+    }
+
+    public void cacelarReserva(int codigoVoo){
+        for(Voo v_CancelarReserva : voos){
+            if(v_CancelarReserva.getCodigo().equals(codigoVoo)){
+               v_CancelarReserva.cancelarReserva();
+            }
+        }
+    }
 
 
 }

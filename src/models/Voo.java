@@ -52,6 +52,21 @@ public class Voo {
         return assentos;
     }
 
+    public void reservarAssentos(){
+        if(this.assentos > 0){
+            this.assentos--;
+        }
+        else{
+            System.out.println("Voo Lotado.");
+        }
+    }
+
+    public void cancelarReserva(){
+        if(this.assentos > 0){
+            this.assentos++;
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Voo voo)) return false;
