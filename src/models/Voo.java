@@ -1,21 +1,26 @@
 package models;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Objects;
 
 public class Voo {
 
+    static Integer codigoInicial = 100;
+
     private Integer codigo;
     private String origem;
     private String destino;
-    private Date data;
-    private Date horario;
+    private LocalDate data;
+    private LocalTime horario;
     private Integer assentos;
 
-    public Voo(){}
+    public Voo() {
+    }
 
-    public Voo(Integer codigo, String origem, String destino, Date data, Date horario, Integer assentos) {
-        this.codigo = codigo;
+    public Voo(String origem, String destino, LocalDate data, LocalTime horario, Integer assentos) {
+        this.codigo = codigoInicial++;
         this.origem = origem;
         this.destino = destino;
         this.data = data;
@@ -27,48 +32,24 @@ public class Voo {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
     public String getOrigem() {
         return origem;
-    }
-
-    public void setOrigem(String origem) {
-        this.origem = origem;
     }
 
     public String getDestino() {
         return destino;
     }
 
-    public void setDestino(String destino) {
-        this.destino = destino;
-    }
-
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
-        this.data = data;
-    }
-
-    public Date getHorario() {
+    public LocalTime getHorario() {
         return horario;
-    }
-
-    public void setHorario(Date horario) {
-        this.horario = horario;
     }
 
     public Integer getAssentos() {
         return assentos;
-    }
-
-    public void setAssentos(Integer assentos) {
-        this.assentos = assentos;
     }
 
     @Override
@@ -80,5 +61,17 @@ public class Voo {
     @Override
     public int hashCode() {
         return Objects.hashCode(codigo);
+    }
+
+    @Override
+    public String toString() {
+        return "Voo{" +
+                "codigo=" + codigo +
+                ", origem='" + origem + '\'' +
+                ", destino='" + destino + '\'' +
+                ", data=" + data +
+                ", horario=" + horario +
+                ", assentos=" + assentos +
+                '}';
     }
 }

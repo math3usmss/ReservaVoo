@@ -4,50 +4,39 @@ import java.util.Objects;
 
 public class Reserva {
 
-    private String passageiro;
+    private String nomePassageiro;
     private String CPF;
-    private Voo voo;
+    private Integer codigoVoo;
 
-    public Reserva(){}
+    public Reserva() {
+    }
 
-    public Reserva(String passageiro, String CPF, Voo voo) {
-        this.passageiro = passageiro;
+    public Reserva(String nomePassageiro, String CPF, Integer codigoVoo) {
+        this.nomePassageiro = nomePassageiro;
         this.CPF = CPF;
-        this.voo = voo;
+        this.codigoVoo = codigoVoo;
     }
 
     public String getPassageiro() {
-        return passageiro;
-    }
-
-    public void setPassageiro(String passageiro) {
-        this.passageiro = passageiro;
+        return nomePassageiro;
     }
 
     public String getCPF() {
         return CPF;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-
-    public Voo getVoo() {
-        return voo;
-    }
-
-    public void setVoo(Voo voo) {
-        this.voo = voo;
+    public Integer getCodigoVoo() {
+        return codigoVoo;
     }
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Reserva reserva)) return false;
-        return Objects.equals(CPF, reserva.CPF) && Objects.equals(voo, reserva.voo);
+        return Objects.equals(CPF, reserva.CPF) && Objects.equals(codigoVoo, reserva.codigoVoo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(CPF, voo);
+        return Objects.hash(CPF, codigoVoo);
     }
 }
