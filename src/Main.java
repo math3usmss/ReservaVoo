@@ -8,8 +8,11 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        GerenciadorVoos gv = new GerenciadorVoos();
+        GerenciadorVoos gv = new GerenciadorVoos(new GerenciadorReservas());
         GerenciadorReservas gr = new GerenciadorReservas(gv);
+
+        gv.exportVoos();
+        gr.exportReservas();
 
         int option = menu();
 
@@ -36,6 +39,13 @@ public class Main {
                     option = menu();
                     break;
                 case 3:
+                    System.out.println("Digite o numero do voo:");
+                    int vooDeletar = sc.nextInt();
+
+                    gv.DeletarVoo(vooDeletar);
+                    option = menu();
+                    break;
+                case 4:
                     System.out.println("Digite o nome do passageiro:");
                     String nome_passageiro = sc.nextLine();
                     System.out.println("Digite o CPF do passageiro:");
@@ -47,11 +57,11 @@ public class Main {
                     gr.NovaReserva(nome_passageiro, CPF, codigo_voo);
                     option = menu();
                     break;
-                case 4:
+                case 5:
                     gr.Reservas();
                     option = menu();
                     break;
-                case 5:
+                case 6:
                     System.out.println("Qual o CPF do passageiro que deseja cancelar a reserva:");
                     String CPF_cancelar = sc.nextLine();
                     System.out.println("Informe o codigo do voo:");
@@ -60,10 +70,18 @@ public class Main {
                     gr.CancelarReserva(codigo_cancelar, CPF_cancelar);
                     option = menu();
                     break;
-                case 6:
+                case 7:
+                    System.out.println("Digite o nome da cidade que deseja buscar:");
+                    String cidadeBusca = sc.nextLine();
+                    gv.buscarVooCidade(cidadeBusca);
+                    option = menu();
+                    break;
             }
 
         } while (option != 0);
+
+        gr.importReservas();
+        gv.importVoos();
 
         sc.close();
 
@@ -76,10 +94,11 @@ public class Main {
         System.out.println("0 - Sair");
         System.out.println("1 - Cadastrar um novo Voo");
         System.out.println("2 - Listar todos os voos disponíveis");
-        System.out.println("3 - Reservar assento");
-        System.out.println("4 - Listar todos os reservas disponíveis");
-        System.out.println("5 - Cancelar reserva");
-        System.out.println("6 - Buscar voo por cidade");
+        System.out.println("3 - Apagar Voo");
+        System.out.println("4 - Reservar assento");
+        System.out.println("5 - Listar todos os reservas disponíveis");
+        System.out.println("6 - Cancelar reserva");
+        System.out.println("7 - Buscar voo por cidade");
         System.out.println("----------------");
 
         return sc.nextInt();

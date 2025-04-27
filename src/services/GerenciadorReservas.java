@@ -3,12 +3,22 @@ package services;
 import models.Reserva;
 import models.Voo;
 
+import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class GerenciadorReservas {
 
+    private String path = "./Reservas.txt";
+
     private ArrayList<Reserva> reservas = new ArrayList<>();
     private  GerenciadorVoos gerenciadorVoos;
+
+    public GerenciadorReservas(){
+
+    }
 
     public GerenciadorReservas(GerenciadorVoos gerenciadorVoos){
         this.gerenciadorVoos = gerenciadorVoos;
@@ -48,7 +58,7 @@ public class GerenciadorReservas {
     public void CancelarReserva(int codigoVoo, String CPF){
         Reserva r_cancelar = BuscaReserva(CPF);
         if(r_cancelar.getCPF().equalsIgnoreCase(CPF)){
-            gerenciadorVoos.cacelarReserva(codigoVoo);
+            gerenciadorVoos.cacelarReservaVoo(codigoVoo);
             reservas.remove(r_cancelar);
             System.out.println("Reserva cancelada");
         }
@@ -61,5 +71,41 @@ public class GerenciadorReservas {
             }
         }
         return null;
+    }
+
+    public boolean verificaReserva(int codigoVoo){
+        for(Reserva reserva : reservas){
+            if(reserva.getCodigoVoo().equals(reserva)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void importReservas(){
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
+            for(Reserva importReserva : reservas){
+                String linha = importReserva.getPassageiro() + "##" + importReserva.getCPF()+ "##" + importReserva.getCodigoVoo();
+                bw.write(linha);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void exportReservas(){
+        try(BufferedReader br = new BufferedReader(new FileReader(path))){
+            String linha;
+            while((linha = br.readLine()) != null){
+                String[] reservaSalvos = linha.split("##");
+                NovaReserva(reservaSalvos[0],reservaSalvos[1],Integer.parseInt(reservaSalvos[2]));
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
