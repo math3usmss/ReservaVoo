@@ -12,11 +12,12 @@
    - Listar todos as reservas feitas.
    - Cancelar uma reserva.
    - Buscar Voo por cidade.
+   - Salvamento automático dos voos e reservas em arquivo ao sair da aplicação, junto com a instanciação automática ao entrar novamente.
 
 - Técnico
   - Projeto feito em Java, separado por camadas:
       - Camada models, que possui as classes que representam o sistema, como a classe Voo e Reserva.
-      - Camada services, que possui as classes que tem como responsabilidade efetuar as regras do sistema, como a classe de gerenciamento de voo e a de gerenciamento de reservas.     
+      - Camada services, que possui as classes que tem como responsabilidade efetuar as regras do sistema, como a classe de gerenciamento de voo e a de gerenciamento de reservas.
  
 ## Autor
 - Matheus Manoel Souza da Silva
